@@ -9,6 +9,11 @@ class LocationFetch extends ChangeNotifier{
   LatLng get currentLocation => _currentLocation;
 
   String locationText = 'Hit Refresh!';
+  String streetName = '';
+  String placemarkName = '';
+  String postalCode = '';
+  String localityName = '';
+  String sublocalityName = '';
 
   Future<void> resetLocation() async {
     try {
@@ -19,6 +24,12 @@ class LocationFetch extends ChangeNotifier{
       List<Placemark> placemarks = await placemarkFromCoordinates(currentLocation.latitude, currentLocation.longitude);
       
       locationText = 'Hey! You\'re at ${placemarks.first.street!}';
+      streetName = placemarks.first.street!;
+      placemarkName = placemarks.first.name!;
+      postalCode = placemarks.first.postalCode!;
+      localityName = placemarks.first.locality!;
+      sublocalityName = placemarks.first.subLocality!;
+
       notifyListeners();
     } on Exception catch (e) {
       print(e);

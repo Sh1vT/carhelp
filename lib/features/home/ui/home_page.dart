@@ -9,12 +9,41 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final locationFetch = context.watch<LocationFetch>();
     return Scaffold(
-        drawer: const NavBar(),
-        appBar: AppBar(
-          title: Row(
-            children: [
-              Expanded(
+      drawer: const NavBar(),
+      appBar: AppBar(
+        title: Row(
+          children: [
+            Expanded(
+              child: GestureDetector(
+                onTap: () {
+                  showDialog(
+                    context: context,
+                    builder: (context) {
+                      return AlertDialog(
+                        content: SizedBox(
+                          height: 100,
+                          child: Column(
+                            children: [
+                              Text((context)
+                                  .watch<LocationFetch>()
+                                  .placemarkName),
+                              Text((context).watch<LocationFetch>().streetName),
+                              Text((context)
+                                  .watch<LocationFetch>()
+                                  .localityName),
+                              Text((context)
+                                  .watch<LocationFetch>()
+                                  .sublocalityName),
+                              Text((context).watch<LocationFetch>().postalCode),
+                            ],
+                          ),
+                        ),
+                      );
+                    },
+                  );
+                },
                 child: Container(
                   padding: const EdgeInsets.all(4),
                   decoration: BoxDecoration(
@@ -31,23 +60,22 @@ class HomePage extends StatelessWidget {
                   ),
                 ),
               ),
-              Container(
-                margin: const EdgeInsets.all(8),
-                padding: const EdgeInsets.all(8),
-                child: IconButton(
-                  onPressed: () {
-                    Navigator.of(context).pushNamed('/shop');
-                  },
-                  icon: const Icon(Icons.shopping_bag_rounded),
-                  color: Colors.grey.shade900,
-                ),
+            ),
+            Container(
+              margin: const EdgeInsets.all(8),
+              padding: const EdgeInsets.all(8),
+              child: IconButton(
+                onPressed: () {
+                  Navigator.of(context).pushNamed('/shop');
+                },
+                icon: const Icon(Icons.shopping_bag_rounded),
+                color: Colors.grey.shade900,
               ),
-            ],
-          ),
+            ),
+          ],
         ),
-        body:
-            HomePageSliver(), 
-      );
-
+      ),
+      body: HomePageSliver(),
+    );
   }
 }
