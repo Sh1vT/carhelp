@@ -1,4 +1,5 @@
 import 'package:carhelp/features/home/logic/location_fetch.dart';
+import 'package:carhelp/features/home/ui/home_page_alert_row.dart';
 import 'package:carhelp/features/nav/ui/nav_bar.dart';
 import 'package:carhelp/features/home/ui/home_page_sliver.dart';
 import 'package:flutter/material.dart';
@@ -6,10 +7,10 @@ import 'package:provider/provider.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
+  
 
   @override
   Widget build(BuildContext context) {
-    final locationFetch = context.watch<LocationFetch>();
     return Scaffold(
       drawer: const NavBar(),
       appBar: AppBar(
@@ -22,21 +23,57 @@ class HomePage extends StatelessWidget {
                     context: context,
                     builder: (context) {
                       return AlertDialog(
-                        content: SizedBox(
-                          height: 100,
+                        content: Container(
+                          height: 160,
                           child: Column(
                             children: [
-                              Text((context)
-                                  .watch<LocationFetch>()
-                                  .placemarkName),
-                              Text((context).watch<LocationFetch>().streetName),
-                              Text((context)
-                                  .watch<LocationFetch>()
-                                  .localityName),
-                              Text((context)
-                                  .watch<LocationFetch>()
-                                  .sublocalityName),
-                              Text((context).watch<LocationFetch>().postalCode),
+                              Row(
+                                children: [
+                                  const Text(
+                                    'You\'re here',
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 16,
+                                    ),
+                                  ),
+                                  const Spacer(),
+                                  GestureDetector(
+                                    onTap: () {
+                                      Navigator.pop(context);
+                                    },
+                                    child: const Icon(
+                                      Icons.check_rounded,
+                                      size: 18,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              const Spacer(),
+                              HomePageAlertRow(
+                                  fieldName: 'Nearest Stop',
+                                  fieldValue: context
+                                      .watch<LocationFetch>()
+                                      .placemarkName),
+                              HomePageAlertRow(
+                                  fieldName: 'Street',
+                                  fieldValue: context
+                                      .watch<LocationFetch>()
+                                      .streetName),
+                              HomePageAlertRow(
+                                  fieldName: 'Sub-locality',
+                                  fieldValue: context
+                                      .watch<LocationFetch>()
+                                      .sublocalityName),
+                              HomePageAlertRow(
+                                  fieldName: 'Locality',
+                                  fieldValue: context
+                                      .watch<LocationFetch>()
+                                      .localityName),
+                              HomePageAlertRow(
+                                  fieldName: 'Postal code',
+                                  fieldValue: context
+                                      .watch<LocationFetch>()
+                                      .postalCode),
                             ],
                           ),
                         ),
