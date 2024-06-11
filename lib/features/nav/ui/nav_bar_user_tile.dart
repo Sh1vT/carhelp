@@ -5,22 +5,22 @@ class UserTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    final theme=Theme.of(context);
+
     return GestureDetector(
       onTap: () {},
       child: Container(
         height: 120,
-        decoration: const BoxDecoration(
-          boxShadow: [
-            BoxShadow(color: Colors.grey, offset: Offset(-4, 4), blurRadius: 5)
-          ],
-          borderRadius: BorderRadius.only(
+        decoration: BoxDecoration(
+          borderRadius: const BorderRadius.only(
               topRight: Radius.circular(10), bottomRight: Radius.circular(10)),
           border: Border(
-            top: BorderSide(width: 2),
-            right: BorderSide(width: 2),
-            bottom: BorderSide(width: 2),
+            top: BorderSide(width: 2,color: theme.colorScheme.tertiary),
+            right: BorderSide(width: 2,color: theme.colorScheme.tertiary),
+            bottom: BorderSide(width: 2,color: theme.colorScheme.tertiary),
           ),
-          color: Colors.white,
+          color: theme.colorScheme.secondary,
         ),
         margin: const EdgeInsets.fromLTRB(0, 16, 16, 16),
         padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),

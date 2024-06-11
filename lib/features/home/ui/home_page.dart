@@ -1,5 +1,4 @@
 import 'package:carhelp/features/home/logic/location_fetch.dart';
-import 'package:carhelp/features/home/ui/home_page_alert_row.dart';
 import 'package:carhelp/features/nav/ui/nav_bar.dart';
 import 'package:carhelp/features/home/ui/home_page_sliver.dart';
 import 'package:flutter/material.dart';
@@ -7,13 +6,15 @@ import 'package:provider/provider.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
-  
 
   @override
   Widget build(BuildContext context) {
+    final theme=Theme.of(context);
+    final locationFetch = context.watch<LocationFetch>();
     return Scaffold(
       drawer: const NavBar(),
       appBar: AppBar(
+        backgroundColor: theme.colorScheme.background,
         title: Row(
           children: [
             Expanded(
@@ -23,57 +24,21 @@ class HomePage extends StatelessWidget {
                     context: context,
                     builder: (context) {
                       return AlertDialog(
-                        content: Container(
-                          height: 160,
+                        content: SizedBox(
+                          height: 100,
                           child: Column(
                             children: [
-                              Row(
-                                children: [
-                                  const Text(
-                                    'You\'re here',
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: 16,
-                                    ),
-                                  ),
-                                  const Spacer(),
-                                  GestureDetector(
-                                    onTap: () {
-                                      Navigator.pop(context);
-                                    },
-                                    child: const Icon(
-                                      Icons.check_rounded,
-                                      size: 18,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              const Spacer(),
-                              HomePageAlertRow(
-                                  fieldName: 'Nearest Stop',
-                                  fieldValue: context
-                                      .watch<LocationFetch>()
-                                      .placemarkName),
-                              HomePageAlertRow(
-                                  fieldName: 'Street',
-                                  fieldValue: context
-                                      .watch<LocationFetch>()
-                                      .streetName),
-                              HomePageAlertRow(
-                                  fieldName: 'Sub-locality',
-                                  fieldValue: context
-                                      .watch<LocationFetch>()
-                                      .sublocalityName),
-                              HomePageAlertRow(
-                                  fieldName: 'Locality',
-                                  fieldValue: context
-                                      .watch<LocationFetch>()
-                                      .localityName),
-                              HomePageAlertRow(
-                                  fieldName: 'Postal code',
-                                  fieldValue: context
-                                      .watch<LocationFetch>()
-                                      .postalCode),
+                              Text((context)
+                                  .watch<LocationFetch>()
+                                  .placemarkName),
+                              Text((context).watch<LocationFetch>().streetName),
+                              Text((context)
+                                  .watch<LocationFetch>()
+                                  .localityName),
+                              Text((context)
+                                  .watch<LocationFetch>()
+                                  .sublocalityName),
+                              Text((context).watch<LocationFetch>().postalCode),
                             ],
                           ),
                         ),
@@ -84,13 +49,14 @@ class HomePage extends StatelessWidget {
                 child: Container(
                   padding: const EdgeInsets.all(4),
                   decoration: BoxDecoration(
-                    border: Border.all(width: 2, color: Colors.grey.shade700),
+                    border: Border.all(width: 2, color: theme.colorScheme.tertiary),
                     borderRadius: const BorderRadius.all(Radius.circular(10)),
+                    color: theme.colorScheme.primary,
                   ),
                   child: Text(
                     (context).watch<LocationFetch>().locationText,
                     style: TextStyle(
-                      color: Colors.grey.shade700,
+                      color: theme.colorScheme.tertiary,
                       fontSize: 12,
                       fontWeight: FontWeight.w600,
                     ),
@@ -106,13 +72,14 @@ class HomePage extends StatelessWidget {
                   Navigator.of(context).pushNamed('/shop');
                 },
                 icon: const Icon(Icons.shopping_bag_rounded),
-                color: Colors.grey.shade900,
+                color: theme.colorScheme.tertiary,
               ),
             ),
           ],
         ),
       ),
-      body: HomePageSliver(),
+      backgroundColor: theme.colorScheme.background,
+      body: const HomePageSliver(),
     );
   }
 }

@@ -7,8 +7,11 @@ class NavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    final theme=Theme.of(context);
+    
     return Drawer(
-      backgroundColor: Colors.white,
+      backgroundColor: theme.colorScheme.background,
       shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
               topRight: Radius.circular(10), bottomRight: Radius.circular(10))),
