@@ -16,6 +16,9 @@ final mapController = MapController();
 class _HomePageSliverState extends State<HomePageSliver> {
   @override
   Widget build(BuildContext context) {
+
+    final theme=Theme.of(context);
+
     final locationFetch = context.watch<LocationFetch>();
     return CustomScrollView(
       slivers: [
@@ -77,8 +80,8 @@ class _HomePageSliverState extends State<HomePageSliver> {
             ),
           ),
         ),
-        const SliverAppBar(
-          backgroundColor: Colors.white,
+         SliverAppBar(
+          backgroundColor:theme.colorScheme.background,
           expandedHeight: 8,
           automaticallyImplyLeading: false,
           collapsedHeight: 16,

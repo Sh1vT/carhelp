@@ -8,17 +8,17 @@ class MechanicTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    final theme=Theme.of(context);
+
     return Container(
       margin: const EdgeInsets.all(8),
       padding: const EdgeInsets.all(8),
       height: 120,
       decoration: BoxDecoration(
-        boxShadow: const [
-          BoxShadow(color: Colors.grey, offset: Offset(-4, 4), blurRadius: 5)
-        ],
         borderRadius: const BorderRadius.all(Radius.circular(10)),
-        border: Border.all(width: 2),
-        color: Colors.white,
+        border: Border.all(width: 2,color: theme.colorScheme.tertiary),
+        color: theme.colorScheme.background,
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -30,7 +30,7 @@ class MechanicTile extends StatelessWidget {
               height: 60,
               width: 60,
               decoration: BoxDecoration(
-                border: Border.all(width: 2),
+                border: Border.all(width: 2, color: theme.colorScheme.tertiary),
                 borderRadius: BorderRadius.circular(100),
               ),
               child: const Icon(
