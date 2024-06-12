@@ -29,7 +29,7 @@ class NavSettingsPage extends StatelessWidget {
       body: ListView(
         children: [
           ListTile(
-            title: Text("Toggle Theme"),
+            title: const Text("Toggle Theme"),
             trailing: Switch(
               value: Provider.of<themeProvider>(context).themeData == lightTheme,
               onChanged: (value) {
