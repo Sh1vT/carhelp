@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class HomePageAlertRow extends StatelessWidget {
   String fieldName = "";
   String fieldValue = "";
@@ -8,40 +9,24 @@ class HomePageAlertRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.only(top: 4),
-      child: Column(
-        children: [
-          Container(
-            margin: const EdgeInsets.fromLTRB(0,0,2,0),
-            padding: const EdgeInsets.symmetric(horizontal: 4),
-            child: Row(
-              children: [
-                Text(
-                  fieldName,
-                  style: const TextStyle(
-                    fontWeight: FontWeight.w500,
-                    fontSize: 14,
-                  ),
-                ),
-                const Spacer(),
-                Text(
-                  fieldValue,
-                  style: const TextStyle(
-                    fontWeight: FontWeight.w400,
-                    fontSize: 14,
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Container(
-            margin: const EdgeInsets.only(top: 1),
-            height: 1,
-            color: Colors.grey[700],
-          )
-        ],
-      ),
+    final theme = Theme.of(context);
+    return Column(
+      children: [
+        Row(
+          children: [
+            Text(fieldName, style: const TextStyle(fontWeight: FontWeight.w500),),
+            const Spacer(),
+            Text(fieldValue, style: const TextStyle(fontSize: 14),),
+          ],
+        ),
+        Container(
+          color: theme.colorScheme.tertiary,
+          height: 1,
+        ),
+        const SizedBox(
+          height: 2,
+        )
+      ],
     );
   }
 }

@@ -2,6 +2,7 @@ import 'package:carhelp/features/home/logic/location_fetch.dart';
 import 'package:carhelp/features/home/ui/mechanic_tiles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
+import 'package:latlong2/latlong.dart';
 import 'package:provider/provider.dart';
 
 class HomePageSliver extends StatefulWidget {
@@ -16,10 +17,14 @@ final mapController = MapController();
 class _HomePageSliverState extends State<HomePageSliver> {
   @override
   Widget build(BuildContext context) {
-
-    final theme=Theme.of(context);
+    final theme = Theme.of(context);
 
     final locationFetch = context.watch<LocationFetch>();
+
+    if (locationFetch.currentLocation == const LatLng(0, 0)) {
+      return Center(child: CircularProgressIndicator(color: theme.colorScheme.tertiary,));
+    }
+    
     return CustomScrollView(
       slivers: [
         SliverAppBar(
@@ -80,13 +85,13 @@ class _HomePageSliverState extends State<HomePageSliver> {
             ),
           ),
         ),
-         SliverAppBar(
-          backgroundColor:theme.colorScheme.background,
+        SliverAppBar(
+          backgroundColor: theme.colorScheme.background,
           expandedHeight: 8,
           automaticallyImplyLeading: false,
           collapsedHeight: 16,
           toolbarHeight: 16,
-          flexibleSpace: Icon(Icons.keyboard_arrow_up_rounded),
+          flexibleSpace: const Icon(Icons.keyboard_arrow_up_rounded),
         ),
         SliverList(
           delegate: SliverChildBuilderDelegate((context, index) {
