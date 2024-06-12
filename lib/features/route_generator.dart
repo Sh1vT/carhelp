@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
-    final args = settings.arguments; //To take in arguments while routing
+    // final args = settings.arguments; //To take in arguments while routing
     switch (settings.name) {
 
       case '/':

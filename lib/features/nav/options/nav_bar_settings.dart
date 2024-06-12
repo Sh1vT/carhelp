@@ -1,7 +1,6 @@
 import 'package:carhelp/features/home/themes/themeProvider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter/widgets.dart';
 import 'package:carhelp/features/home/themes/homeLIght.dart';
 
 class NavSettingsPage extends StatelessWidget {
@@ -9,9 +8,6 @@ class NavSettingsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-    final theme=Theme.of(context);
-
     return Scaffold(
       appBar: AppBar(
         leading: MaterialButton(

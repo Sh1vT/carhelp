@@ -10,7 +10,6 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme=Theme.of(context);
-    final locationFetch = context.watch<LocationFetch>();
     return Scaffold(
       drawer: const NavBar(),
       appBar: AppBar(
