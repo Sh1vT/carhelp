@@ -1,8 +1,8 @@
 
-import 'package:carhelp/features/home/themes/homeLIght.dart';
+import 'package:carhelp/features/themes/theme_data.dart';
 import 'package:flutter/material.dart';
 
-class themeProvider with ChangeNotifier{
+class ThemeProvider with ChangeNotifier{
   ThemeData _themeData=lightTheme;
 
   ThemeData get themeData=> _themeData;
@@ -13,9 +13,10 @@ class themeProvider with ChangeNotifier{
   }
 
   void toggleTheme(){
-    if(_themeData==lightTheme)
+    if(_themeData==lightTheme) {
       themeData=darkTheme;
-    else
+    } else {
       themeData=lightTheme;
+    }
   }
 }
