@@ -6,14 +6,14 @@ import 'package:geocoding/geocoding.dart';
 
 class LocationFetch extends ChangeNotifier{
   LatLng _currentLocation = const LatLng(0, 0);
-  LatLng get currentLocation => _currentLocation;
-
-  String locationText = 'Hit Refresh!';
+  String locationText = 'Loading...';
   String streetName = '';
   String placemarkName = '';
   String postalCode = '';
   String localityName = '';
   String sublocalityName = '';
+
+  LatLng get currentLocation => _currentLocation;
 
   Future<void> resetLocation() async {
     try {
@@ -32,7 +32,7 @@ class LocationFetch extends ChangeNotifier{
 
       notifyListeners();
     } on Exception catch (e) {
-      print(e);
+      debugPrint(e.toString());
     }
   }
 }

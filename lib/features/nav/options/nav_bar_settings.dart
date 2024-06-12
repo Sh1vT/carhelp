@@ -1,7 +1,8 @@
-import 'package:carhelp/features/home/themes/themeProvider.dart';
+import 'package:carhelp/features/theme_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:carhelp/features/home/themes/homeLIght.dart';
+
 
 class NavSettingsPage extends StatelessWidget {
   const NavSettingsPage({super.key});
@@ -29,11 +30,11 @@ class NavSettingsPage extends StatelessWidget {
       body: ListView(
         children: [
           ListTile(
-            title: Text("Toggle Theme"),
+            title: const Text("Toggle Theme"),
             trailing: Switch(
-              value: Provider.of<themeProvider>(context).themeData == lightTheme,
+              value: Provider.of<ThemeProvider>(context).themeData == lightTheme,
               onChanged: (value) {
-                Provider.of<themeProvider>(context, listen: false).toggleTheme();
+                Provider.of<ThemeProvider>(context, listen: false).toggleTheme();
               },
               activeColor: Colors.black,
               thumbColor: MaterialStateProperty.all(Colors.white),

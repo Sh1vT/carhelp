@@ -1,3 +1,4 @@
+import 'package:carhelp/features/chat/ui/chat_bot.dart';
 import 'package:carhelp/features/home/ui/home_page.dart';
 import 'package:carhelp/features/nav/options/nav_bar_account.dart';
 import 'package:carhelp/features/nav/options/nav_bar_help.dart';
@@ -33,7 +34,9 @@ class RouteGenerator {
       case '/settings':
         return MaterialPageRoute(builder: (_) => const NavSettingsPage()); //Nav Bar Option 5 -Settings Page
 
-      
+      case '/chat':
+        return MaterialPageRoute(builder: (_)=> const Chatbot());
+        
       default:
         return _errorRoute();
     }
