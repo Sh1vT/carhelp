@@ -1,8 +1,7 @@
 import 'package:carhelp/features/theme_provider.dart';
+import 'package:carhelp/features/themes/theme_data.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:carhelp/features/home/themes/homeLIght.dart';
-
 
 class NavSettingsPage extends StatelessWidget {
   const NavSettingsPage({super.key});
