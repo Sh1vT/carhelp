@@ -1,1 +1,0 @@
-const String openAiAPIKey = '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';
