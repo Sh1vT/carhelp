@@ -15,7 +15,7 @@ class NavSettingsPage extends StatelessWidget {
             Icons.arrow_back_ios_new_rounded,
             size: 16,
           ),
-          onPressed: () => Navigator.pop(context), // Concise arrow function syntax
+          onPressed: () => Navigator.pop(context), 
         ),
         centerTitle: true,
         title: const Text(

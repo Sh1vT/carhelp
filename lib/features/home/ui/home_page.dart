@@ -91,24 +91,6 @@ class _HomePageState extends State<HomePage> {
                             ],
                           ),
                         ),
-                        // content: SizedBox(
-                        //   height: 100,
-                        //   child: Column(
-                        //     children: [
-                        //       Text((context)
-                        //           .watch<LocationFetch>()
-                        //           .placemarkName),
-                        //       Text((context).watch<LocationFetch>().streetName),
-                        //       Text((context)
-                        //           .watch<LocationFetch>()
-                        //           .localityName),
-                        //       Text((context)
-                        //           .watch<LocationFetch>()
-                        //           .sublocalityName),
-                        //       Text((context).watch<LocationFetch>().postalCode),
-                        //     ],
-                        //   ),
-                        // ),
                       );
                     },
                   );
@@ -139,7 +121,7 @@ class _HomePageState extends State<HomePage> {
                 onPressed: () {
                   Navigator.of(context).pushNamed('/chat');
                 },
-                icon: const Icon(Icons.assistant_rounded),
+                icon: const Icon(Icons.assistant_outlined),
                 color: theme.colorScheme.tertiary,
               ),
             ),
