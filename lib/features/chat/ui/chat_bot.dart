@@ -1,13 +1,30 @@
 import 'package:animate_do/animate_do.dart';
+import 'package:carhelp/features/chat/ui/chat_bot_message_screen.dart';
+import 'package:dialog_flowtter/dialog_flowtter.dart';
 import 'package:flutter/material.dart';
 
-class Chatbot extends StatelessWidget {
+class Chatbot extends StatefulWidget {
   const Chatbot({super.key});
+
+  @override
+  State<Chatbot> createState() => _ChatbotState();
+}
+
+class _ChatbotState extends State<Chatbot> {
+  late DialogFlowtter dialogFlowtter;
+  final TextEditingController textcontroller = TextEditingController();
+
+  List<Map<String, dynamic>> messages = [];
+
+  @override
+  void initState() {
+    DialogFlowtter.fromFile().then((instance) => dialogFlowtter = instance);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final TextEditingController text = TextEditingController();
     return Scaffold(
       appBar: AppBar(
         leading: MaterialButton(
@@ -35,35 +52,41 @@ class Chatbot extends StatelessWidget {
               child: Image.asset(
                 fit: BoxFit.cover,
                 'assets/images/assistant.jpg',
-                height: MediaQuery.of(context).size.height / 4.25,
-                width: MediaQuery.of(context).size.width / 2.5,
+                height: MediaQuery.of(context).size.height / 7.0,
+                width: MediaQuery.of(context).size.width / 3.5,
               ),
             ),
           ),
           FadeInLeft(
-            child: Container(
-              margin: const EdgeInsets.only(top: 8),
-              height: MediaQuery.of(context).size.height / 10,
-              width: MediaQuery.of(context).size.width / 1.5,
-              decoration: BoxDecoration(
-                borderRadius: const BorderRadius.only(
-                    topLeft: Radius.zero,
-                    topRight: Radius.circular(10),
-                    bottomLeft: Radius.circular(10),
-                    bottomRight: Radius.circular(10)),
-                border: Border.all(width: 2, color: theme.colorScheme.tertiary),
-              ),
-              child: const Align(
-                alignment: Alignment.center,
-                child: Text(
-                  'Hello! How may I help you...',
-                  style: TextStyle(fontWeight: FontWeight.w500),
-                ),
+            child: Align(
+              alignment: Alignment.centerLeft,
+              child: Container(
+                margin: const EdgeInsets.all(10),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 14, horizontal: 14),
+                decoration: BoxDecoration(
+                    border:
+                        Border.all(width: 2, color: theme.colorScheme.tertiary),
+                    borderRadius: const BorderRadius.only(
+                      bottomLeft: Radius.circular(
+                        10,
+                      ),
+                      bottomRight: Radius.circular(10),
+                      topRight: Radius.circular(10),
+                      topLeft: Radius.circular(0),
+                    ),
+                    color: theme.colorScheme.primary),
+                constraints: BoxConstraints(
+                    maxWidth: MediaQuery.of(context).size.width * 2 / 3),
+                child: Text('Hello! How may I help you?',
+                    style: TextStyle(color: theme.colorScheme.tertiary)),
               ),
             ),
           ),
           Expanded(
-            child: Container(),
+            child: MessageScreen(
+              messages: messages,
+            ),
           ),
           Container(
             decoration: BoxDecoration(
@@ -80,16 +103,21 @@ class Chatbot extends StatelessWidget {
                     height: 48,
                     padding: const EdgeInsets.symmetric(horizontal: 10),
                     child: TextField(
-                      style: TextStyle(
-                        color: theme.colorScheme.primary
-                      ),
-                      controller: text,
+                      style: TextStyle(color: theme.colorScheme.primary),
+                      controller: textcontroller,
                       cursorColor: theme.colorScheme.primary,
                     ),
                   ),
                 ),
                 GestureDetector(
-                  onTap: () {},
+                  onTap: () {
+                    if (textcontroller.text.isEmpty) {
+                      return;
+                    }
+                    sendMessage(textcontroller.text);
+                    textcontroller.clear();
+                    FocusScope.of(context).requestFocus(FocusNode());
+                  },
                   child: Container(
                     padding: const EdgeInsets.only(right: 10),
                     child: Icon(
@@ -105,5 +133,42 @@ class Chatbot extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  void sendMessage(String text) async {
+    if (text.isEmpty) {
+      return; //message is empty
+    }
+    setState(() {
+      addMessage(
+        Message(text: DialogText(text: [text])),
+        true,
+      );
+    });
+
+    DetectIntentResponse response = await dialogFlowtter.detectIntent(
+      queryInput: QueryInput(text: TextInput(text: text)),
+    );
+
+    if (response.message == null) {
+      return; //response is null
+    }
+
+    setState(() {
+      addMessage(response.message!);
+    });
+  }
+
+  void addMessage(Message message, [bool isUserMessage = false]) {
+    messages.add({
+      'message': message,
+      'isUserMessage': isUserMessage,
+    });
+  }
+
+  @override
+  void dispose() {
+    dialogFlowtter.dispose();
+    super.dispose();
   }
 }

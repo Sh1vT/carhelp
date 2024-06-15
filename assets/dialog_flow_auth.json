@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "carhelp-chatbot-9est",
+  "private_key_id": "9de199aaa75e05fa8c81336f65f96d0b34ce6b08",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC2yjz7Wq+AhVKU\ntIQISz5VVfRWX0ihlJYnQV55KSKVvkyDSE3gVAvQu9yuGpcO2Rc85b0EgEe09iEf\nMLL1MmPRc9QM7WCULn3YePZqRNWvKFCf9S9CyZsOx7etAEhgysTij1oVUTwFAqb1\nMRW1lPMlLMK3XEZeKTf8lD33JKU9UupHCAl+uX7Q+Ei+AcySEggDnSqhInjHHkh+\nQuZB1//xhwfSj1Ar1JedI16fDBikWgFpNzuHLVyYEnMNNNKmaU9M8RJvwt1jqgz/\n/HH0CKvpUDW7y4GP6zXUkFjFM5bVBaX/f/i1p3RXyxWO8/2ro/Rlb1JX/PRPf8Ga\ndUpN3PbjAgMBAAECggEANHKl+cdFCT73+YQsSEbyvUCbCbdwWzCLvvrCNUiozEec\no6S496+V7lAhG3G0u0VuJgKTcDmwmYtv6IesKa/KNVyjUQxBhHMsl9LpfYd/urD6\nJVOQOn0neR+0I7crjV5RDOLuCaTT8GoY5sytOnthIt8Lhdo7tKPmFRqiBwpkQUpP\nRzAlail1cVkVZXzOdxcW5eG1THekbqKJhH5ggzUoIW8CW/y06arb1Z3TJSlEkKx+\nFNePF7dcoLu8WgNyEms+dOf8WNwjbrZi/Od+GJuCDkYp0AB09Dh2vME+Kw4SUyeD\nOZBQI6R008Sa5hK/U2H0ATxfazGjMooUg/tAHKTJoQKBgQDotejBcOC2rzonJHg5\nuA3dRq+th8DM2YgF67I2FWQCLYGnBD18s6kADtp+xbZhqz7fgHQmzmYjkV0VOGLh\nts48tNGev898Q1bwHcorfFZDcmaPgifidXT1zxAT1SDXZGCeI05EoF69EQ0AROEM\nphojUtf+meBQvH9vIoE8l7BdAwKBgQDJFVqMLhKCbpXRTEpG75Ynf5GrDou4FNX6\nKRZSHy8mD6u4gX8Lp7ZwUj7tDfQE8Jw29VbYeiYSbE9RDSnUmA0k4B66F82xSUAG\nCuNgbziOTNRerP+d+lIpG0bLBAOeJP0GYAy7hg8ky8bxhgioXPuIswRyNZXidelj\nlkf7K84ooQKBgCtTwzRQ+eXJlkA3cBL/C8XJJWhfwCvjzImdqp6bOPWW127rQS94\nm9yg51l3Ik/o/FnMptOa1jWFGRmcV/zCdn+jAuxVtiHiv8sRINUb30vLfwD1MMvf\nJpmlpc6rfePckoie9jGc0kbNZ+hG6sfaHT+6avDCYZtmnStp9zn63CFVAoGBAJcn\nZhlZyLAjUJs0LeGE1+p5Cpb7KCwH/ZE+sXip2FdUEFFxhn7MY2era4HmqzfLZqIp\nak7wAw52PGlA6+DTK448qtxYaFaMKYRhSuqCsJDHUBybDstCD+C2kFCrg8ytIUZZ\njTipXVjblYCYsIle2/W2G/F+Nl01JWum3BUCqMYBAoGAJeocS7iXrwpRuK9p0J5D\nLAJDGZ+U5XB0j9f/GxLBD2aiIuSx6zsXzbt1AsqK93QcJxSp5G/RLypu9Ytmoc/J\nlFs5nmFhi1vQRXzEebycazv8tn060PGcxOmPZ296KFaMPfmsZTbMzh47gqgNZN3L\nmUE63zaW6GhJAI1dIlXu+Po=\n-----END PRIVATE KEY-----\n",
+  "client_email": "carhelpchatbotfeature@carhelp-chatbot-9est.iam.gserviceaccount.com",
+  "client_id": "108709981316162314718",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/carhelpchatbotfeature%40carhelp-chatbot-9est.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
