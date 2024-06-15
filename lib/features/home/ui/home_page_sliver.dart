@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:carhelp/features/home/logic/location_fetch.dart';
 import 'package:carhelp/features/home/ui/mechanic_tiles.dart';
 import 'package:flutter/material.dart';
@@ -21,10 +22,13 @@ class _HomePageSliverState extends State<HomePageSliver> {
 
     final locationFetch = context.watch<LocationFetch>();
 
-    if (locationFetch.currentLocation == const LatLng(0, 0)) {
-      return Center(child: CircularProgressIndicator(color: theme.colorScheme.tertiary,));
+    if (locationFetch.currentLocation == LatLng(0, 0)) {
+      return Center(
+          child: CircularProgressIndicator(
+        color: theme.colorScheme.tertiary,
+      ));
     }
-    
+
     return CustomScrollView(
       slivers: [
         SliverAppBar(
@@ -36,21 +40,34 @@ class _HomePageSliverState extends State<HomePageSliver> {
           flexibleSpace: FlutterMap(
             mapController: mapController,
             options: MapOptions(
-              initialZoom: 17,
-              initialCenter: locationFetch.currentLocation,
+              minZoom: 17,
+              center: locationFetch.currentLocation,
             ),
             children: [
               TileLayer(
                 urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
                 userAgentPackageName: 'dev.fleaflet.flutter_map.example',
-                // Plenty of other options available!
               ),
               MarkerLayer(
                 markers: [
+                  // Marker(
+                  //   point: (context).watch<LocationFetch>().currentLocation,
+                  //   child: const Icon(Icons.location_on, color: Colors.red),
+                  // ),  //old FLutterMap code before dialog_flowtter was introduced
                   Marker(
                     point: (context).watch<LocationFetch>().currentLocation,
-                    child: const Icon(Icons.location_on, color: Colors.red),
-                  ),
+                    builder: (context) => Bounce(
+                      child: const SizedBox(
+                        width: 48,
+                        height: 48,
+                        child: Icon(
+                          Icons.location_on,
+                          size: 32,
+                          color: Colors.red,
+                        ),
+                      ),
+                    ),
+                  )
                 ],
               ),
             ],

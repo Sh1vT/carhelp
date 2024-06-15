@@ -5,7 +5,7 @@ import 'package:geocoding/geocoding.dart';
 
 
 class LocationFetch extends ChangeNotifier{
-  LatLng _currentLocation = const LatLng(0, 0);
+  LatLng _currentLocation = LatLng(0, 0);
   String locationText = 'Loading...';
   String streetName = '';
   String placemarkName = '';
