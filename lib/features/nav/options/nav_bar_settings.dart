@@ -8,6 +8,7 @@ class NavSettingsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Scaffold(
       appBar: AppBar(
         leading: MaterialButton(
@@ -28,15 +29,18 @@ class NavSettingsPage extends StatelessWidget {
       ),
       body: ListView(
         children: [
-          ListTile(
-            title: const Text("Toggle Theme"),
-            trailing: Switch(
-              value: Provider.of<ThemeProvider>(context).themeData == lightTheme,
-              onChanged: (value) {
-                Provider.of<ThemeProvider>(context, listen: false).toggleTheme();
-              },
-              activeColor: Colors.black,
-              thumbColor: MaterialStateProperty.all(Colors.white),
+          Container(
+            margin: const EdgeInsets.only(left: 10),
+            child: ListTile(
+              title: const Text("Dark Mode", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 15),),
+              trailing: Switch(
+                value: Provider.of<ThemeProvider>(context).themeData == darkTheme,
+                onChanged: (value) {
+                  Provider.of<ThemeProvider>(context, listen: false).toggleTheme();
+                },
+                activeColor: theme.colorScheme.primary,
+                thumbColor: MaterialStateProperty.all(theme.colorScheme.secondary),
+              ),
             ),
           )
         ]

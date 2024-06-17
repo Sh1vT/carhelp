@@ -1,5 +1,7 @@
 import 'package:carhelp/features/chat/ui/chat_bot.dart';
 import 'package:carhelp/features/home/ui/home_page.dart';
+import 'package:carhelp/features/login/ui/login_page.dart';
+import 'package:carhelp/features/login/ui/sign_in_page.dart';
 import 'package:carhelp/features/nav/options/nav_bar_account.dart';
 import 'package:carhelp/features/nav/options/nav_bar_help.dart';
 import 'package:carhelp/features/nav/options/nav_bar_referral.dart';
@@ -13,8 +15,14 @@ class RouteGenerator {
     // final args = settings.arguments; //To take in arguments while routing
     switch (settings.name) {
 
-      case '/':
-        return MaterialPageRoute(builder: (_) => const HomePage()); //For Home page
+      case '/login':
+        return MaterialPageRoute(builder: (_) => LogInPage()); //For Login Page
+
+      case '/signin':
+        return MaterialPageRoute(builder: (_) => SignInPage()); //For Signin Page
+
+      case '/home':
+        return MaterialPageRoute(builder: (_) => const HomePage()); //For Home Page
 
       case '/nav':
         return MaterialPageRoute(builder: (_) => const NavBar()); //For Nav Bar

@@ -2,6 +2,7 @@ import 'package:carhelp/features/home/logic/location_fetch.dart';
 import 'package:carhelp/features/theme_provider.dart';
 import 'package:carhelp/features/route_generator.dart';
 import 'package:carhelp/firebase_options.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -27,7 +28,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: '/',
+      initialRoute: (FirebaseAuth.instance.currentUser != null) ? '/home' : '/login',
       onGenerateRoute: RouteGenerator.generateRoute,
       theme: Provider.of<ThemeProvider>(context).themeData,
     );
