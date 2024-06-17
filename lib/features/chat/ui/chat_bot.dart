@@ -1,4 +1,3 @@
-import 'package:animate_do/animate_do.dart';
 import 'package:carhelp/features/chat/ui/chat_bot_message_screen.dart';
 import 'package:dialog_flowtter/dialog_flowtter.dart';
 import 'package:flutter/material.dart';
@@ -13,6 +12,7 @@ class Chatbot extends StatefulWidget {
 class _ChatbotState extends State<Chatbot> {
   late DialogFlowtter dialogFlowtter;
   final TextEditingController textcontroller = TextEditingController();
+  final ScrollController _scrollController = ScrollController();
 
   List<Map<String, dynamic>> messages = [];
 
@@ -47,45 +47,11 @@ class _ChatbotState extends State<Chatbot> {
       ),
       body: Column(
         children: [
-          Center(
-            child: ClipOval(
-              child: Image.asset(
-                fit: BoxFit.cover,
-                'assets/images/assistant.jpg',
-                height: MediaQuery.of(context).size.height / 7.0,
-                width: MediaQuery.of(context).size.width / 3.5,
-              ),
-            ),
-          ),
-          FadeInLeft(
-            child: Align(
-              alignment: Alignment.centerLeft,
-              child: Container(
-                margin: const EdgeInsets.all(10),
-                padding:
-                    const EdgeInsets.symmetric(vertical: 14, horizontal: 14),
-                decoration: BoxDecoration(
-                    border:
-                        Border.all(width: 2, color: theme.colorScheme.tertiary),
-                    borderRadius: const BorderRadius.only(
-                      bottomLeft: Radius.circular(
-                        10,
-                      ),
-                      bottomRight: Radius.circular(10),
-                      topRight: Radius.circular(10),
-                      topLeft: Radius.circular(0),
-                    ),
-                    color: theme.colorScheme.primary),
-                constraints: BoxConstraints(
-                    maxWidth: MediaQuery.of(context).size.width * 2 / 3),
-                child: Text('Hello! How may I help you?',
-                    style: TextStyle(color: theme.colorScheme.tertiary)),
-              ),
-            ),
-          ),
           Expanded(
             child: MessageScreen(
               messages: messages,
+              scrollController: _scrollController,
+              theme: theme,
             ),
           ),
           Container(
@@ -156,6 +122,7 @@ class _ChatbotState extends State<Chatbot> {
 
     setState(() {
       addMessage(response.message!);
+      _scrollToBottom();
     });
   }
 
@@ -166,9 +133,20 @@ class _ChatbotState extends State<Chatbot> {
     });
   }
 
+  void _scrollToBottom() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _scrollController.animateTo(
+        _scrollController.position.maxScrollExtent,
+        duration: const Duration(milliseconds: 300),
+        curve: Curves.easeOut,
+      );
+    });
+  }
+
   @override
   void dispose() {
     dialogFlowtter.dispose();
+    _scrollController.dispose();
     super.dispose();
   }
 }
