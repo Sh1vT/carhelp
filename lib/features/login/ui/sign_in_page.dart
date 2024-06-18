@@ -3,6 +3,7 @@ import 'package:carhelp/features/login/ui/pop_up_snackbar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:secure_shared_preferences/secure_shared_pref.dart';
 
 // ignore: must_be_immutable
 class SignInPage extends StatelessWidget {
@@ -11,11 +12,15 @@ class SignInPage extends StatelessWidget {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final cPasswordController = TextEditingController();
+  final nameController = TextEditingController();
+  final phoneController = TextEditingController();
 
   void createAccount(BuildContext context) async {
+    String name = nameController.text.trim();
     String email = emailController.text.trim();
     String password = passwordController.text.trim();
     String cPassword = cPasswordController.text.trim();
+    String phone = phoneController.text.trim();
 
     if (email.isEmpty || password.isEmpty || cPassword.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -31,6 +36,13 @@ class SignInPage extends StatelessWidget {
             .createUserWithEmailAndPassword(
                 email: email, password: password) ;
         debugPrint('User created');
+        //Saving name and phone to local storage for user_tile
+        var pref = await SecureSharedPref.getInstance();
+        pref.clearAll(); //Clears all data in case user is going to change login credentials
+        pref.putString("name", name);
+        pref.putString("phone", phone);
+        debugPrint("User data saved");
+        //Closing the Sign Up page
         if (userCredential.user != null){
           // ignore: use_build_context_synchronously
           Navigator.pop(context);
@@ -67,7 +79,7 @@ class SignInPage extends StatelessWidget {
         children: [
           //Navigate to Sign In
           FadeInDown(
-            delay: const Duration(milliseconds: 1200),
+            delay: const Duration(milliseconds: 900),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
@@ -97,11 +109,29 @@ class SignInPage extends StatelessWidget {
           ),
           //SignInElements
           FadeInUp(
+            delay: const Duration(milliseconds: 150),
+            child: SignInFieldRows(
+              fieldName: 'Name',
+              fieldValue: 'Enter your name',
+              controller: nameController,
+              obscureTextBool: false,
+            ),
+          ),
+          FadeInUp(
             delay: const Duration(milliseconds: 300),
             child: SignInFieldRows(
               fieldName: 'E-mail',
               fieldValue: 'Enter your mail',
               controller: emailController,
+              obscureTextBool: false,
+            ),
+          ),
+          FadeInUp(
+            delay: const Duration(milliseconds: 450),
+            child: SignInFieldRows(
+              fieldName: 'Phone',
+              fieldValue: 'Enter your phone number',
+              controller: phoneController,
               obscureTextBool: false,
             ),
           ),
@@ -115,7 +145,7 @@ class SignInPage extends StatelessWidget {
             ),
           ),
           FadeInUp(
-            delay: const Duration(milliseconds: 900),
+            delay: const Duration(milliseconds: 750),
             child: SignInFieldRows(
               fieldName: 'Confirm Password',
               fieldValue: 'Re-enter password',
@@ -125,7 +155,7 @@ class SignInPage extends StatelessWidget {
           ),
           //SubmitButton
           FadeInUp(
-            delay: const Duration(milliseconds: 1200),
+            delay: const Duration(milliseconds: 900),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
