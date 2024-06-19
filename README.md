@@ -1,20 +1,20 @@
-# Welcome to Car-Help!
+# 🌟 Welcome to Car-Help! 🌟
 
 (The name is subject to change of-course...)
 This is the client-side application, designed to help users find their nearest mechanics and contact them for assistance. It utilizes a centralized and scalable database provided by Firebase Firestore and is written completely in flutter. We made this app to explore Flutter's complex UI navigation and state management while learning a bit about databases.
 
-## The team
+## The team 🚀
 The team comprises of two friends!
 
-<ul>
-<li> Shiv Kumar Tiwari @ <a href="https://github.com/Sh1vT">GitHub </a>
-<li> Samarth Dubey @ <a href="https://github.com/Samarth512">GitHub</a>
-</ul>
 
-##  Tech-Stack
+<li>🙋 Shiv Kumar Tiwari @ <a href="https://github.com/Sh1vT">GitHub </a> 
+<li>🙋‍♂️ Samarth Dubey @ <a href="https://github.com/Samarth512">GitHub</a>
+
+
+##  Tech-Stack 🖇️
 The android application is designed by using **Flutter**  and its incredible UI components. It runs on the cloud database provided by **Firebase Firestore.** The packages used are provided by Flutter's package manager **pub.dev**.
 
-## Features
+## Features 💯
 
 User experience is of utmost importance in any mobile app and it was kept in mind while creating this one too. The app provides following features:
 
@@ -28,7 +28,7 @@ User experience is of utmost importance in any mobile app and it was kept in min
 <li> <b>Dark Theme Support</b> because its easy on the eyes
 </ol>
 
-## Packages
+## Packages 🗃️
 
 The app would not be possible without the help of following **pub.dev** packages:
 
@@ -45,5 +45,5 @@ The app would not be possible without the help of following **pub.dev** packages
 |firebase_auth|5.1.0| for authentication services
 |secure_shared_preferences|0.0.4| for secured storage of user credentials
 
-## Screenshots
+## Screenshots 📸
 
