@@ -48,3 +48,6 @@ The app would not be possible without the help of following **pub.dev** packages
 
 ## Screenshots 📸
 
+<img width="235" alt="image" src="https://github.com/Sh1vT/carhelp/assets/154119443/3ff70ea3-21a3-47cc-9598-e7c5efde1ae2">
+
+
