@@ -7,22 +7,21 @@ class NavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
 
-    final theme=Theme.of(context);
-    
     return Drawer(
       backgroundColor: theme.colorScheme.background,
       shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
               topRight: Radius.circular(10), bottomRight: Radius.circular(10))),
       child: ListView(
-        children: const [
+        children: [
           UserTile(),
-          NavBarTile(name: 'Help', icon: Icons.question_mark_rounded, settings: '/help',),
-          NavBarTile(name: 'Account', icon: Icons.person, settings: '/account',),
-          NavBarTile(name: 'Wallet', icon: Icons.wallet, settings: '/wallet',),
-          NavBarTile(name: 'Referrals', icon: Icons.monetization_on_rounded, settings: '/referrals',),
-          NavBarTile(name: 'Settings', icon: Icons.settings, settings: '/settings',),
+          const NavBarTile(name: 'Help', icon: Icons.question_mark_rounded, settings: '/help'),
+          const NavBarTile(name: 'Account', icon: Icons.person, settings: '/account'),
+          const NavBarTile(name: 'Wallet', icon: Icons.wallet, settings: '/wallet'),
+          const NavBarTile(name: 'Referrals', icon: Icons.monetization_on_rounded, settings: '/referrals'),
+          const NavBarTile(name: 'Settings', icon: Icons.settings, settings: '/settings'),
         ],
       ),
     );
