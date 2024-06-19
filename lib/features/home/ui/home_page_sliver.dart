@@ -1,6 +1,7 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:carhelp/features/home/logic/location_fetch.dart';
 import 'package:carhelp/features/home/ui/mechanic_tiles.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
@@ -13,20 +14,27 @@ class HomePageSliver extends StatefulWidget {
   State<HomePageSliver> createState() => _HomePageSliverState();
 }
 
-final mapController = MapController();
-
 class _HomePageSliverState extends State<HomePageSliver> {
+  @override
+  void initState() {
+    super.initState();
+    context.read<LocationFetch>().getCollectionLength();
+    context.read<LocationFetch>().updateMarkers();
+  }
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
+    final mapController = MapController();
     final locationFetch = context.watch<LocationFetch>();
 
     if (locationFetch.currentLocation == LatLng(0, 0)) {
       return Center(
-          child: CircularProgressIndicator(
-        color: theme.colorScheme.tertiary,
-      ));
+        child: CircularProgressIndicator(
+          color: theme.colorScheme.tertiary,
+        ),
+      );
     }
 
     return CustomScrollView(
@@ -49,11 +57,23 @@ class _HomePageSliverState extends State<HomePageSliver> {
                 userAgentPackageName: 'dev.fleaflet.flutter_map.example',
               ),
               MarkerLayer(
+                // markers: [
+                //   Marker(
+                //     point: (context).watch<LocationFetch>().currentLocation,
+                //     builder: (context) => Bounce(
+                //       child: const SizedBox(
+                //         width: 48,
+                //         height: 48,
+                //         child: Icon(
+                //           Icons.location_on,
+                //           size: 32,
+                //           color: Colors.red,
+                //         ),
+                //       ),
+                //     ),
+                //   )
+                // ],
                 markers: [
-                  // Marker(
-                  //   point: (context).watch<LocationFetch>().currentLocation,
-                  //   child: const Icon(Icons.location_on, color: Colors.red),
-                  // ),  //old FLutterMap code before dialog_flowtter was introduced
                   Marker(
                     point: (context).watch<LocationFetch>().currentLocation,
                     builder: (context) => Bounce(
@@ -68,7 +88,7 @@ class _HomePageSliverState extends State<HomePageSliver> {
                       ),
                     ),
                   )
-                ],
+                ]+context.watch<LocationFetch>().markerList,
               ),
             ],
           ),
@@ -112,14 +132,32 @@ class _HomePageSliverState extends State<HomePageSliver> {
         ),
         SliverList(
           delegate: SliverChildBuilderDelegate((context, index) {
-            return const Padding(
-              padding: EdgeInsets.fromLTRB(8, 8, 8, 0),
-              child: MechanicTile(
-                  name: 'Placeholder name',
-                  number: 'Placeholder number',
-                  address: 'Placeholder address'),
+            return StreamBuilder(
+              stream: FirebaseFirestore.instance
+                  .collection("mechanics")
+                  .snapshots(),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.active) {
+                  if (snapshot.hasData && snapshot.data != null) {
+                    Map<String, dynamic> mechanicMap =
+                        snapshot.data!.docs[index].data();
+
+                    return MechanicTile(
+                        name: mechanicMap["name"],
+                        number: mechanicMap["phone"],
+                        address: mechanicMap["address"]);
+                  } else {
+                    debugPrint('No data');
+                    return const SnackBar(content: Text('No data'));
+                  }
+                } else {
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                }
+              },
             );
-          }, childCount: 10),
+          }, childCount: locationFetch.mechanicCount),
         ),
       ],
     );
