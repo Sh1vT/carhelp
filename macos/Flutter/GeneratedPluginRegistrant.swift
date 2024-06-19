@@ -5,10 +5,7 @@
 import FlutterMacOS
 import Foundation
 
-<<<<<<< Updated upstream
 import cloud_firestore
-=======
->>>>>>> Stashed changes
 import cryptography_flutter
 import firebase_auth
 import firebase_core
@@ -18,10 +15,7 @@ import package_info
 import shared_preferences_foundation
 
 func RegisterGeneratedPlugins(registry: FlutterPluginRegistry) {
-<<<<<<< Updated upstream
   FLTFirebaseFirestorePlugin.register(with: registry.registrar(forPlugin: "FLTFirebaseFirestorePlugin"))
-=======
->>>>>>> Stashed changes
   CryptographyFlutterPlugin.register(with: registry.registrar(forPlugin: "CryptographyFlutterPlugin"))
   FLTFirebaseAuthPlugin.register(with: registry.registrar(forPlugin: "FLTFirebaseAuthPlugin"))
   FLTFirebaseCorePlugin.register(with: registry.registrar(forPlugin: "FLTFirebaseCorePlugin"))

@@ -6,7 +6,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:carhelp/features/user_model.dart'; // Import UserModel
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,7 +15,6 @@ void main() async {
       providers: [
         ChangeNotifierProvider(create: (context) => LocationFetch()),
         ChangeNotifierProvider(create: (context) => ThemeProvider()),
-        ChangeNotifierProvider(create: (context) => UserModel()), // Add UserModel provider
       ],
       child: const MyApp(),
     ),
