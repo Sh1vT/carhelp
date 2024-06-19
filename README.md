@@ -1,4 +1,4 @@
-# 🌟 Welcome to Car-Help! 🌟
+# 🌟 Welcome to MotoFix! 🌟
 
 (The name is subject to change of-course...)
 This is the client-side application, designed to help users find their nearest mechanics and contact them for assistance. It utilizes a centralized and scalable database provided by Firebase Firestore and is written completely in flutter. We made this app to explore Flutter's complex UI navigation and state management while learning a bit about databases.
