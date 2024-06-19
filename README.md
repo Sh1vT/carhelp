@@ -34,7 +34,6 @@ The app would not be possible without the help of following **pub.dev** packages
 
 |Package name | Version | Reason
 |--|--|--
-|
 |latlong2|0.8.2| for latitude and longitude calculations
 |geolocator|12.0.0| for accessing user location
 |provider|6.0.0| for state management
