@@ -55,6 +55,10 @@ The app would not be possible without the help of following **pub.dev** packages
 <img width="168" alt="image" src="https://github.com/Sh1vT/carhelp/assets/154119443/6ab3911b-0b00-4b0c-a65d-22b8a37db7a2">
 <img width="170" alt="image" src="https://github.com/Sh1vT/carhelp/assets/154119443/790ece0a-535b-4313-ae30-9d30d1e442dc">
 <img width="169" alt="image" src="https://github.com/Sh1vT/carhelp/assets/154119443/0d29c500-6347-42da-8666-a235f7d8de2c">
+<img width="170" alt="image" src="https://github.com/Sh1vT/carhelp/assets/154119443/4e315eb5-74ee-412a-b5d4-5f96fb15ccf9">
+<img width="169" alt="image" src="https://github.com/Sh1vT/carhelp/assets/154119443/762d5d21-f4c5-4630-97de-2187e6f4f1c0">
+
+
 
 
 
