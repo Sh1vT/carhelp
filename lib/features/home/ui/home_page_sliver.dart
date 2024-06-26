@@ -48,7 +48,7 @@ class _HomePageSliverState extends State<HomePageSliver> {
           flexibleSpace: FlutterMap(
             mapController: mapController,
             options: MapOptions(
-              minZoom: 17,
+              minZoom: 10,
               center: locationFetch.currentLocation,
             ),
             children: [
@@ -74,21 +74,22 @@ class _HomePageSliverState extends State<HomePageSliver> {
                 //   )
                 // ],
                 markers: [
-                  Marker(
-                    point: (context).watch<LocationFetch>().currentLocation,
-                    builder: (context) => Bounce(
-                      child: const SizedBox(
-                        width: 48,
-                        height: 48,
-                        child: Icon(
-                          Icons.location_on,
-                          size: 32,
-                          color: Colors.red,
+                      Marker(
+                        point: (context).watch<LocationFetch>().currentLocation,
+                        builder: (context) => Bounce(
+                          child: const SizedBox(
+                            width: 48,
+                            height: 48,
+                            child: Icon(
+                              Icons.location_on,
+                              size: 32,
+                              color: Colors.red,
+                            ),
+                          ),
                         ),
-                      ),
-                    ),
-                  )
-                ]+context.watch<LocationFetch>().markerList,
+                      )
+                    ] +
+                    context.watch<LocationFetch>().markerList,
               ),
             ],
           ),
@@ -109,7 +110,7 @@ class _HomePageSliverState extends State<HomePageSliver> {
                         .resetLocation();
                     setState(
                       () {
-                        mapController.move(locationFetch.currentLocation, 17);
+                        mapController.move(locationFetch.currentLocation, 15);
                       },
                     );
                   },
@@ -141,13 +142,33 @@ class _HomePageSliverState extends State<HomePageSliver> {
                   if (snapshot.hasData && snapshot.data != null) {
                     Map<String, dynamic> mechanicMap =
                         snapshot.data!.docs[index].data();
-
-                    return MechanicTile(
+                    GeoPoint mechanicCoords = mechanicMap["coords"];
+                    if (locationFetch.within2kms(
+                        LatLng(
+                            mechanicCoords.latitude, mechanicCoords.longitude),
+                        locationFetch.currentLocation)) {
+                      return MechanicTile(
                         name: mechanicMap["name"],
                         number: mechanicMap["phone"],
-                        address: mechanicMap["address"]);
+                        address: mechanicMap["address"],
+                        distance: "Within 2 kms",
+                        mechanicLatLng: mechanicCoords,
+                      );
+                    } else if (locationFetch.within5kms(
+                        LatLng(
+                            mechanicCoords.latitude, mechanicCoords.longitude),
+                        locationFetch.currentLocation)) {
+                      return MechanicTile(
+                          name: mechanicMap["name"],
+                          number: mechanicMap["phone"],
+                          address: mechanicMap["address"],
+                          distance: "Within 5 kms",
+                          mechanicLatLng: mechanicCoords,);
+                    } else {
+                      return Container();
+                    }
                   } else {
-                    debugPrint('No data');
+                    debugPrint('Snapshot has null data');
                     return const SnackBar(content: Text('No data'));
                   }
                 } else {
