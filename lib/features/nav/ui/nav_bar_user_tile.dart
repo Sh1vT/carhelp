@@ -66,9 +66,9 @@ class _UserTileState extends State<UserTile> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(username,
-                    style: TextStyle(fontWeight: FontWeight.bold)),
+                    style: const TextStyle(fontWeight: FontWeight.bold)),
                 Text(phone,
-                    style: TextStyle(fontWeight: FontWeight.bold)),
+                    style: const TextStyle(fontWeight: FontWeight.bold)),
               ],
             )
           ],

@@ -1,4 +1,3 @@
-import 'package:animate_do/animate_do.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
@@ -40,8 +39,6 @@ class LocationFetch extends ChangeNotifier {
     }
   }
 
-  
-
   Future<void> getCollectionLength() async {
     final querySnapshot =
         await FirebaseFirestore.instance.collection("mechanics").get();
@@ -50,15 +47,14 @@ class LocationFetch extends ChangeNotifier {
   }
 
   List<Marker> markerList = [];
-  
+
   Future<void> updateMarkers() async {
     // Clear existing markers before fetching new data
     markerList.clear();
 
     // Fetch mechanics data from Firestore
-    final querySnapshot = await FirebaseFirestore.instance
-        .collection("mechanics")
-        .get();
+    final querySnapshot =
+        await FirebaseFirestore.instance.collection("mechanics").get();
 
     for (final doc in querySnapshot.docs) {
       final mechanicMap = doc.data();
@@ -80,5 +76,23 @@ class LocationFetch extends ChangeNotifier {
     notifyListeners(); // Notify listeners about updated markerList
   }
 
-  
+  bool within2kms(LatLng p1, LatLng p2) {
+    Distance distance = const Distance();
+    double val = distance.as(LengthUnit.Kilometer, p1, p2);
+    if(val<=2){
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  bool within5kms(LatLng p1, LatLng p2) {
+    Distance distance = const Distance();
+    double val = distance.as(LengthUnit.Kilometer, p1, p2);
+    if(val>2 && val<=5){
+      return true;
+    } else {
+      return false;
+    }
+  }
 }

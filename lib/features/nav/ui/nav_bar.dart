@@ -15,13 +15,13 @@ class NavBar extends StatelessWidget {
           borderRadius: BorderRadius.only(
               topRight: Radius.circular(10), bottomRight: Radius.circular(10))),
       child: ListView(
-        children: [
+        children: const [
           UserTile(),
-          const NavBarTile(name: 'Help', icon: Icons.question_mark_rounded, settings: '/help'),
-          const NavBarTile(name: 'Account', icon: Icons.person, settings: '/account'),
-          const NavBarTile(name: 'Wallet', icon: Icons.wallet, settings: '/wallet'),
-          const NavBarTile(name: 'Referrals', icon: Icons.monetization_on_rounded, settings: '/referrals'),
-          const NavBarTile(name: 'Settings', icon: Icons.settings, settings: '/settings'),
+          NavBarTile(name: 'Help', icon: Icons.question_mark_rounded, settings: '/help'),
+          NavBarTile(name: 'Account', icon: Icons.person, settings: '/account'),
+          NavBarTile(name: 'Wallet', icon: Icons.wallet, settings: '/wallet'),
+          NavBarTile(name: 'Referrals', icon: Icons.monetization_on_rounded, settings: '/referrals'),
+          NavBarTile(name: 'Settings', icon: Icons.settings, settings: '/settings'),
         ],
       ),
     );
