@@ -7,8 +7,12 @@ This is the client-side application, designed to help users find their nearest m
 The team comprises of two friends!
 
 <ul>
-<li>🙋 Shiv Kumar Tiwari @ <a href="https://github.com/Sh1vT">GitHub </a> 
-<li>🙋‍♂️ Samarth Dubey @ <a href="https://github.com/Samarth512">GitHub</a>
+<li>🙋 Shiv Kumar Tiwari  
+<li>🙋‍♂️ Kulbhushan Shandilaya
+<li>🙋 Harsh Vardhan
+<li>🙋‍♂️ Sintu Mishra
+</ul>
+
 </ul>
 
 ##  Tech-Stack 🖇️
