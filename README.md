@@ -8,9 +8,7 @@ The team comprises of two friends!
 
 <ul>
 <li>🙋 Shiv Kumar Tiwari  
-<li>🙋‍♂️ Kulbhushan Shandilaya
-<li>🙋 Harsh Vardhan
-<li>🙋‍♂️ Sintu Mishra
+<li>🙋‍♂️ Samarth Dubey
 </ul>
 
 </ul>
